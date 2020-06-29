@@ -16,6 +16,8 @@ secOther.addEventListener('mouseout', function(e) {
 
 //t-shirt info section
 const color = document.querySelector('#color');
+const colorOption = document.querySelectorAll('#color option');
+console.log(colorOption);
 const puns = document.querySelector("[value='js puns']");
 const heart = document.querySelector("[value='heart js']");
 const design = document.querySelector('#design');
@@ -23,11 +25,38 @@ const h3 = document.querySelector('h3');
 
 color.style.display = 'none';
 
-design.addEventListener('click', function(e) {
+
+design.addEventListener('mouseout', function(e) {
     if(e.target.value === 'js puns'){
          h3.style.display = 'none';
-    }if(e.target.value === 'heart js') {
-        console.log('two');
+         color.style.display = "block";
+   
+        for (let i = 0; i < colorOption.length; i++) {
+             colorOption[i].style.display = "none";
+           if (
+             colorOption[i].value === "cornflowerblue" ||
+             colorOption[i].value === "darkslategrey" ||
+             colorOption[i].value === "gold"
+           ) {
+             colorOption[i].style.display = "block";
+           }
+           
+        }
     }
+    if(e.target.value === 'heart js') {
+         h3.style.display = 'none';
+         color.style.display = "block";
+   
+        for (let i = 0; i < colorOption.length; i++) {
+             colorOption[i].style.display = "none";
+           if (
+             colorOption[i].value === "tomato" ||
+             colorOption[i].value === "steelblue" ||
+             colorOption[i].value === "dimgrey"
+           ) {
+             colorOption[i].style.display = "block";
+           }
+    }
+  }
 });
 
