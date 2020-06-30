@@ -57,6 +57,9 @@ design.addEventListener('mouseout', function(e) {
 //register for activities
 const activities = document.querySelector('.activities');
 const checkbox = activities.querySelectorAll("input[type='checkbox']");
+const totalSum = document.createElement('h2');
+let totalAmount = 0;
+
 
 
 activities.addEventListener('change', function() {
@@ -88,4 +91,14 @@ activities.addEventListener('change', function() {
       checkbox[2].parentNode.style.color = "rgba(0,0,0, 1)";
       checkbox[2].disabled = false;
     }
+    
+        
+        if(checkbox[0].checked) {
+            totalAmount += 200;
+            totalSum.textContent = "Total: " + parseInt(totalAmount);
+        }if(!checkbox[0].checked) {
+            totalAmount -= 200;
+            totalSum.innerText = "Total: " + parseInt(totalAmount);
+        }
 });
+activities.appendChild(totalSum);
