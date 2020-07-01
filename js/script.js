@@ -100,8 +100,6 @@ creditCard.style.display = 'none';
 paypal.style.display = 'none';
 bitcoin.style.display = 'none';
 
-console.log(payment);
-console.log(payOption);
 
 payment.addEventListener('mouseout', function(e) {
    if (e.target.value === "credit card") {
@@ -116,8 +114,45 @@ payment.addEventListener('mouseout', function(e) {
      bitcoin.style.display = "block";
      creditCard.style.display = "none";
      paypal.style.display = "none";
-   } 
-     
+   }  
 });
 
+//form validation 
+const form = document.querySelector('form');
+const zname = document.querySelector('#name');
+const zemail = document.querySelector('#mail');
+const ccNum = document.querySelector('#cc-num');
+const zip = document.querySelector('#zip');
+const cvv = document.querySelector('#cvv');
+
+function isValidEmail() {
+  return /^[^@]+@[^@.]+\.[a-z]+$/i.test(zemail.value);
+}
+
+
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  if(zname.value === '' || zname.value == null) {
+     zname.setAttribute("placeholder", "Name is required");
+     zname.style.border = '1px solid red';
+  }
+  if( zemail.value === '' || zemail.value == !(isValidEmail())) {
+     zemail.setAttribute('placeholder', 'please enter correct email address');
+     zemail.style.border = '1px solid red';
+  }
+
+  if(ccNum.value === '' || ccNum.value == null) {
+      ccNum.setAttribute('placeholder', 'must enter credit card number');
+      ccNum.style.border = '1px solid red';
+  }
+  if (zip.value === "" || zip.value == null) {
+       zip.setAttribute("placeholder", "must enter zip");
+       zip.style.border = "1px solid red";
+    }
+  if (cvv.value === "" || cvv.value == null) {
+    cvv.setAttribute("placeholder", "must enter cvv");
+    cvv.style.border = "1px solid red";
+  }
+});
 
